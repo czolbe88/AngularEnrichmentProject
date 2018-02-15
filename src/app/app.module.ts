@@ -4,8 +4,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AppComponent} from './app.component';
 import {SearchFormComponent} from './components/search-form/search-form.component';
 import {HttpClientModule} from '@angular/common/http';
-import { DisplayComponent } from './components/display/display.component';
 import {SearchGIFService} from "./searchGIF";
+import { DisplayComponent } from './components/display/display.component';
 
 @NgModule({
   declarations: [

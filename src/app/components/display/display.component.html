@@ -1,2 +1,18 @@
+<table>
+  <tr *ngFor="let gif of displayResults">
 
-<!--event: handler-->
+    <td>
+      {{gif.title}}
+    </td>
+
+    <td>
+      <img src={{gif.downsized}} />
+    </td>
+
+
+  </tr>
+
+
+</table>
+
+

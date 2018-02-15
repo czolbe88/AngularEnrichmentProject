@@ -1,4 +1,5 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import {SearchGIFService} from '../../searchGIF';
 
 @Component({
   selector: 'app-display',
@@ -7,15 +8,13 @@ import { Component, OnInit} from '@angular/core';
 })
 export class DisplayComponent implements OnInit {
 
-  constructor() { }
+
+  constructor(private searchResults: SearchGIFService) { }
 
   ngOnInit() {
+
   }
 
-  // process(Data : any){
-  //
-  //
-  //
-  // }
+  displayResults = this.searchResults.searchResult;
 
 }

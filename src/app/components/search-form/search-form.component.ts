@@ -1,14 +1,14 @@
 import {Component, OnInit, ViewChild, Output, EventEmitter} from '@angular/core';
-import {HttpClient, HttpParams} from "@angular/common/http";
-import {NgForm} from "@angular/forms";
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {NgForm} from '@angular/forms';
 import {Subscription} from 'rxjs/Subscription';
 
 
 import 'rxjs/add/operator/take';
 import 'rxjs/add/operator/toPromise';
 
-import {GIF} from "../../GIFModel";
-import {SearchGIFService} from "../../searchGIF";
+import {GIFresult} from '../../GIFModel';
+import {SearchGIFService} from '../../searchGIF';
 
 @Component({
   selector: 'app-search-form',
@@ -26,29 +26,33 @@ export class SearchFormComponent implements OnInit {
   @ViewChild('submitForm')
   submitForm: NgForm;
 
-  url: string = "https://api.giphy.com/v1/gifs/search?api_key=8aNpCLOpsmWzaQc20NdsXvBRsDu8OmWZ";
-  response = {};
+  url = 'https://api.giphy.com/v1/gifs/search?api_key=8aNpCLOpsmWzaQc20NdsXvBRsDu8OmWZ';
+
   data = [];
 
 
-  constructor(private http: HttpClient, private searchService : SearchGIFService) {
+
+  constructor(private http: HttpClient, private searchService: SearchGIFService) {
   }
 
   ngOnInit() {
   }
 
 
-  //service that returns a promise
-  searchGIFPService(): Promise<any>{
+  // service that returns a promise
+  searchGIFPService(): Promise<any> {
 
-    console.log("callback method");
+    console.log('callback method');
     return (this.searchService.getSearchResults(this.submitForm.value.search, this.submitForm.value.limit));
+
   }
 
-  //method that returns a promise
+  // method that returns a promise
+  searchResults =[];
+
   searchGIFP(): Promise<any> {
 
-    let queryParams: HttpParams = new HttpParams().set("q", this.submitForm.value.search).set("limit", this.submitForm.value.limit);
+    const queryParams: HttpParams = new HttpParams().set('q', this.submitForm.value.search).set('limit', this.submitForm.value.limit);
 
     return (
       this.http.get(this.url, {params: queryParams})
@@ -58,22 +62,37 @@ export class SearchFormComponent implements OnInit {
 
           console.log(resp['data']);
 
-          let result = [];
-          for (let i of resp['data']){
+          const result = [];
+          for (const i of resp['data']) {
             result.push({
               title: i.title,
               url: i.images.downsized.url
-            })
+            });
           }
 
-          console.log(result);
+          const searchResult = [];
+          for (let i of resp['data']){
+
+            let newGif : GIFresult = {
+              title: i.title,
+            downsized: i.url
+
+            }
+            searchResult.push(newGif);
+
+
+          }
+          // this.DataReturned.next(searchResult);
+
+          console.log(searchResult);
         })
+
         .catch(error => {
 
           console.log(error);
         })
 
-    )
+    );
 
 
   }
@@ -83,9 +102,9 @@ export class SearchFormComponent implements OnInit {
   searchGIF() {
 
 
-    console.log("button is pressed. string is: ", this.submitForm.value.search);
+    console.log('button is pressed. string is: ', this.submitForm.value.search);
 
-    let queryParams: HttpParams = new HttpParams().set("q", this.submitForm.value.search).set("limit", this.submitForm.value.limit);
+    const queryParams: HttpParams = new HttpParams().set('q', this.submitForm.value.search).set('limit', this.submitForm.value.limit);
 
     // console.log(queryParams.toString());
 
@@ -95,19 +114,19 @@ export class SearchFormComponent implements OnInit {
 
         console.log(resp['data']);
 
-        let result = [];
-        for (let i of resp['data']){
+        const result = [];
+        for (const i of resp['data']) {
           result.push({
             title: i.title,
             url: i.images.downsized.url
-          })
+          });
         }
 
         console.log(result);
 
       },
       (error) => {
-        console.log(error)
+        console.log(error);
       }
     );
 

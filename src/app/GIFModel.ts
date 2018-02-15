@@ -1,7 +1,6 @@
-export interface GIF{
+export interface GIFresult{
 
   title: string;
-  user: string;
   downsized: string;
 
 }
