@@ -1,3 +1,5 @@
+<form>
+
 <table>
   <tr *ngFor="let gif of displayResults">
 
@@ -9,10 +11,18 @@
       <img src={{gif.downsized}} />
     </td>
 
+    <td>
+      <input type="checkbox" name="{{gif.title}}" value="{{gif.title}}"  />
+    </td>
+
 
   </tr>
 
 
 </table>
 
+<input type="text" required/>
+<button type="submit">Save</button>
 
+
+</form>
