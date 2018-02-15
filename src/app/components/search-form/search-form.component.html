@@ -1,0 +1,15 @@
+
+  <form #submitForm="ngForm" (ngSubmit)="searchGIFPService()">
+    <label for="search">Search</label>
+
+    <input type="text" name="search" id="search" ngModel/>
+
+    <input type="range" min="1" max="100" value="50" id="limit" name="limit" ngModel>
+
+    <button type="submit">Submit</button>
+
+    <button type="reset">Clear</button>
+
+  </form>
+
+

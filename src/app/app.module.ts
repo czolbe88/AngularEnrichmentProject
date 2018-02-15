@@ -1,18 +1,27 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
-
-import { AppComponent } from './app.component';
-
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {AppComponent} from './app.component';
+import {SearchFormComponent} from './components/search-form/search-form.component';
+import {HttpClientModule} from '@angular/common/http';
+import { DisplayComponent } from './components/display/display.component';
+import {SearchGIFService} from "./searchGIF";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SearchFormComponent,
+    DisplayComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
+
   ],
-  providers: [],
+  providers: [SearchGIFService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
