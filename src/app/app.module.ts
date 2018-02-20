@@ -7,12 +7,17 @@ import {HttpClientModule} from '@angular/common/http';
 import {SearchGIFService} from "./searchGIF";
 import { DisplayComponent } from './components/display/display.component';
 import {SaveGIFService} from './saveGIF';
+import {RetrieveGIFService} from './retrieveGIF';
+import {RetrievalFormComponent} from './components/retrieval-form/retrieval-form.component';
+import { DisplayUserGifComponent } from './components/display-user-gif/display-user-gif.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchFormComponent,
-    DisplayComponent
+    DisplayComponent,
+    RetrievalFormComponent,
+    DisplayUserGifComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +26,7 @@ import {SaveGIFService} from './saveGIF';
     HttpClientModule
 
   ],
-  providers: [SearchGIFService, SaveGIFService],
+  providers: [SearchGIFService, SaveGIFService, RetrieveGIFService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
