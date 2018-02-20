@@ -6,6 +6,7 @@ import {SearchFormComponent} from './components/search-form/search-form.componen
 import {HttpClientModule} from '@angular/common/http';
 import {SearchGIFService} from "./searchGIF";
 import { DisplayComponent } from './components/display/display.component';
+import {SaveGIFService} from './saveGIF';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { DisplayComponent } from './components/display/display.component';
     HttpClientModule
 
   ],
-  providers: [SearchGIFService],
+  providers: [SearchGIFService, SaveGIFService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

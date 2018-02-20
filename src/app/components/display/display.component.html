@@ -1,27 +1,35 @@
-<form>
+<form #saveForm="ngForm" (ngSubmit) ="saveGif()">
 
 <table>
-  <tr *ngFor="let gif of displayResults">
+  <tr *ngFor="let gif of displayResults" ngModelGroup={{displayResults.indexOf(gif)}}>
+
 
     <td>
-      {{gif.title}}
+      <p name="gifTitle"  ngModel="{{gif.title}}">{{gif.title}}</p>
     </td>
 
     <td>
-      <img src={{gif.downsized}} />
+      <img src={{gif.downsized}} name="gifUrl" ngModel="{{gif.downsized}}"/>
     </td>
 
     <td>
-      <input type="checkbox" name="{{gif.title}}" value="{{gif.title}}"  />
+      <input type="checkbox" name="cb" value="{{gif.title}}"   ngModel  />
     </td>
+
+    <!--<td>-->
+      <!--<input type="text"  name ="gifUrl"  value= {{gif.downsized}}   hidden ngModel />-->
+    <!--</td>-->
+    <!--<td>-->
+      <!--<input type="text"  name = "gifTitle"  value= {{gif.title}} hidden  ngModel />-->
+    <!--</td>-->
 
 
   </tr>
 
 
 </table>
-
-<input type="text" required/>
+  <label for="user">User</label>
+<input type="text" name="user" id="user" required ngModel />
 <button type="submit">Save</button>
 
 
