@@ -1,17 +1,27 @@
-<h1>Search for Giphy</h1>
+<h1>Search for Gif</h1>
 
   <form #submitForm="ngForm" (ngSubmit)="searchGIFPService()">
     <label for="search">Search</label>
 
     <input type="text" name="search" id="search" ngModel/>
 
-    <input type="range" min="1" max="100" value="50" id="limit" name="limit" ngModel>
+    <!--<input type="range" min="1" max="100" value="50" id="limit" name="limit" required ngModel>-->
 
     <button type="submit">Submit</button>
 
     <button type="reset">Clear</button>
 
   </form>
+
+<mat-paginator [length]="totalItems"
+               [pageSize]="limit"
+               [pageSizeOptions]="[5, 10, 25]"
+
+               (page)="pageEvent($event)"
+
+
+>
+</mat-paginator>
 
 
 <app-display></app-display>

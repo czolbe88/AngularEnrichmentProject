@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild, Output, EventEmitter} from '@angular/core'
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {NgForm} from '@angular/forms';
 import {Subscription} from 'rxjs/Subscription';
+import {PageEvent} from '@angular/material';
 
 
 import 'rxjs/add/operator/take';
@@ -30,6 +31,9 @@ export class SearchFormComponent implements OnInit {
 
   data = [];
 
+  pageIndex: number = 0;
+  limit: number =25;
+
 
 
   constructor(private http: HttpClient, private searchService: SearchGIFService) {
@@ -39,13 +43,30 @@ export class SearchFormComponent implements OnInit {
   }
 
 
+  totalItems = this.searchService.totalItems;
+
   // service that returns a promise
   searchGIFPService(): Promise<any> {
 
     console.log('callback method');
-    return (this.searchService.getSearchResults(this.submitForm.value.search, this.submitForm.value.limit));
+    return (this.searchService.getSearchResults(this.submitForm.value.search, this.limit, this.pageIndex));
 
   }
+
+
+  pageEvent(pageEvent: PageEvent){
+
+    console.log("pressed: ", pageEvent.pageIndex);
+    this.pageIndex = pageEvent.pageIndex;
+    this.limit = pageEvent.pageSize;
+
+    this.searchGIFPService();
+
+
+
+
+  }
+
 
   // method that returns a promise
   searchResults =[];

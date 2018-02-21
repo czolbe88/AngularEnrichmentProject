@@ -15,6 +15,8 @@ export class DisplayComponent implements OnInit {
 
   allGiphy = [];
   savedGiphy = [];
+  displayResults = [];
+  hideDisplayResults = this.searchResults.hideDisplay;
 
   @ViewChild('saveForm')
   saveForm: NgForm;
@@ -24,13 +26,18 @@ export class DisplayComponent implements OnInit {
 
   ngOnInit() {
 
+    console.log(this.hideDisplayResults);
+    this.displayResults = this.searchResults.searchResult;
+
   }
 
-  //common data obtained from the SearchGIFService
-  displayResults = this.searchResults.searchResult;
+
+
 
 
   saveGif() {
+
+
 
     // console.log(this.saveForm.value);
 

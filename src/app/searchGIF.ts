@@ -1,21 +1,29 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {GIFresult} from './GIFModel';
+import {Router} from "@angular/router";
 
 @Injectable()
 export class SearchGIFService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
   }
 
   searchResult = [];
 
-  getSearchResults(q: string, limit: string): Promise<any> {
+  hideDisplay: boolean = true;
+
+  totalItems: number ;
+
+  getSearchResults(q: string, limit: number, page: number): Promise<any> {
+
+
+    let offset: number =  limit * page;
 
     this.searchResult.length =0;
 
     const qs = new HttpParams()
-      .set('q', q).set('limit', limit);
+      .set('q', q).set('limit', limit.toString()).set('offset', offset.toString());
 
     console.log('inside service method');
     // Returns an observable
@@ -35,8 +43,17 @@ export class SearchGIFService {
             };
             this.searchResult.push(newGif);
 
+            this.totalItems = resp['pagination']['total_count'];
+            console.log("total count is", this.totalItems);
+
+          }
+          if(this.searchResult.length > 0){
+            this.hideDisplay = false;
+            console.log(this.hideDisplay);
           }
           console.log("searchResult: ", this.searchResult);
+
+        this.router.navigate(['/search']);
         }
       )
       .catch((error) => {

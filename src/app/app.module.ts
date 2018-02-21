@@ -15,6 +15,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 //angular material
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatPaginatorModule} from '@angular/material/paginator';
 import {LayoutModule} from '@angular/cdk/layout';
 
 const routes: Routes = [
@@ -43,7 +44,8 @@ const routes: Routes = [
     HttpClientModule,
     BrowserAnimationsModule,
     MatTabsModule,
-    LayoutModule
+    LayoutModule,
+    MatPaginatorModule
 
   ],
   providers: [SearchGIFService, SaveGIFService, RetrieveGIFService],
