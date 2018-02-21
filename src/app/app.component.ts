@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {SearchGIFService} from './searchGIF';
+
 
 @Component({
   selector: 'app-root',
