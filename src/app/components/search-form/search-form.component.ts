@@ -34,6 +34,8 @@ export class SearchFormComponent implements OnInit {
   pageIndex: number = 0;
   limit: number =25;
 
+  searchItem: any;
+
 
 
   constructor(private http: HttpClient, private searchService: SearchGIFService) {
@@ -48,8 +50,10 @@ export class SearchFormComponent implements OnInit {
   // service that returns a promise
   searchGIFPService(): Promise<any> {
 
+    this.searchItem = this.submitForm.value.search;
+
     console.log('callback method');
-    return (this.searchService.getSearchResults(this.submitForm.value.search, this.limit, this.pageIndex));
+    return (this.searchService.getSearchResults(this.searchItem, this.limit, this.pageIndex));
 
   }
 

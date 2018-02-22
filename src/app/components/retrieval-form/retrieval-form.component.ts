@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild, Output, EventEmitter} from '@angular/core'
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {NgForm} from '@angular/forms';
 import {Subscription} from 'rxjs/Subscription';
+import {Router} from '@angular/router';
 
 
 import 'rxjs/add/operator/take';
@@ -25,7 +26,7 @@ export class RetrievalFormComponent implements OnInit {
   retrieveForm: NgForm;
 
 
-  constructor(private retrieveService: RetrieveGIFService) {
+  constructor(private retrieveService: RetrieveGIFService, private router: Router) {
   }
 
   ngOnInit() {
@@ -33,10 +34,15 @@ export class RetrievalFormComponent implements OnInit {
 
 
   // service that returns a promise
-  RetrieveGIFPService(): Promise<any> {
+  RetrieveGIFPService(){
 
     console.log('callback method');
-    return (this.retrieveService.getSearchResults(this.retrieveForm.value.search));
+    this.retrieveService.getSearchResults(this.retrieveForm.value.search);
+    console.log('DONE?');
+    this.router.navigate(['/search']);
+
+
+
 
   }
 

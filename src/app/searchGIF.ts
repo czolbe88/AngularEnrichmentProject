@@ -9,6 +9,8 @@ export class SearchGIFService {
   constructor(private http: HttpClient, private router: Router) {
   }
 
+
+
   searchResult = [];
 
   hideDisplay: boolean = true;
@@ -16,6 +18,7 @@ export class SearchGIFService {
   totalItems: number ;
 
   getSearchResults(q: string, limit: number, page: number): Promise<any> {
+
 
 
     let offset: number =  limit * page;
@@ -52,8 +55,8 @@ export class SearchGIFService {
             console.log(this.hideDisplay);
           }
           console.log("searchResult: ", this.searchResult);
-
         this.router.navigate(['/search']);
+
         }
       )
       .catch((error) => {
