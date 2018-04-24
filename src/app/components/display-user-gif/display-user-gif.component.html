@@ -1,17 +1,31 @@
 
-<table>
-  <tr *ngFor="let gif of displayResults" >
-
-    <td>
-      <p name="gifTitle">{{gif.title}}</p>
-    </td>
-
-    <td>
-      <img src={{gif.downsized}} width="200" />
-    </td>
 
 
-  </tr>
+<div style="margin-top: 20px;" class="container">
+
+  <div class="row justify-content-center">
 
 
-</table>
+    <table>
+      <tr  *ngFor="let gif of displayResults" >
+
+        <td>
+          <p class="form-control" name="gifTitle">{{gif.title}}</p>
+        </td>
+
+        <td>
+          <img src={{gif.downsized}} width="200" />
+        </td>
+
+
+      </tr>
+
+
+    </table>
+
+
+  </div>
+
+
+
+</div>

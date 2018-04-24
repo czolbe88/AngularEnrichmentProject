@@ -1,14 +1,34 @@
-<h1>Retrieve your saved Gif</h1>
+<div class="container">
 
-<form #retrieveForm="ngForm" (ngSubmit)="RetrieveGIFPService()">
-  <label for="search">Search</label>
+  <h1 style="text-align: center">Retrieve your saved Gif</h1>
 
-  <input type="text" name="search" id="search" ngModel/>
 
-  <button type="submit">Submit</button>
+  <form #retrieveForm="ngForm" (ngSubmit)="RetrieveGIFPService()">
 
-  <button type="reset">Clear</button>
+    <div class="row justify-content-center ">
 
-</form>
+      <div class="col-md-5 mycol" >
 
-<app-display-user-gif>
+
+      <input class="form-control" type="text" name="search" id="search" ngModel/>
+
+      </div>
+
+    </div>
+
+    <div class="row justify-content-center " style="margin-top: 10px">
+
+
+      <div class="col-md-3 mycol " style="text-align: center">
+        <button class="btn btn-secondary" type="reset">Clear</button>
+      </div>
+
+      <div class="col-md-3 mycol " style="text-align: center">
+        <button class="btn btn-primary" type="submit">Submit</button>
+      </div>
+    </div>
+
+  </form>
+
+  <app-display-user-gif>
+

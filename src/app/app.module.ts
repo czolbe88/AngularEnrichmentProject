@@ -18,6 +18,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {LayoutModule} from '@angular/cdk/layout';
 
+
 const routes: Routes = [
 
   {path: '', component: SearchFormComponent },
@@ -34,6 +35,7 @@ const routes: Routes = [
     DisplayComponent,
     RetrievalFormComponent,
     DisplayUserGifComponent,
+
 
   ],
   imports: [

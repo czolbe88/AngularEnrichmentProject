@@ -31,133 +31,46 @@ export class SearchFormComponent implements OnInit {
 
   data = [];
 
-  pageIndex: number = 0;
+  pageIndex: number = 0;i
   limit: number =25;
-
   searchItem: any;
-
+  totalItems: number = 0;
+  totalPages: number = (this.totalItems / this.limit);
 
 
   constructor(private http: HttpClient, private searchService: SearchGIFService) {
   }
 
   ngOnInit() {
+
   }
 
-
-  totalItems = this.searchService.totalItems;
-
   // service that returns a promise
-  searchGIFPService(): Promise<any> {
+  searchGIFPService(){
 
     this.searchItem = this.submitForm.value.search;
 
     console.log('callback method');
-    return (this.searchService.getSearchResults(this.searchItem, this.limit, this.pageIndex));
+    this.searchService.getSearchResults(this.searchItem, this.limit, this.pageIndex);
 
-  }
-
-
-  pageEvent(pageEvent: PageEvent){
-
-    console.log("pressed: ", pageEvent.pageIndex);
-    this.pageIndex = pageEvent.pageIndex;
-    this.limit = pageEvent.pageSize;
-
-    this.searchGIFPService();
-
+    this.totalItems = this.searchService.totalItems;
 
 
 
   }
 
-
-  // method that returns a promise
-  searchResults =[];
-
-  searchGIFP(): Promise<any> {
-
-    const queryParams: HttpParams = new HttpParams().set('q', this.submitForm.value.search).set('limit', this.submitForm.value.limit);
-
-    return (
-      this.http.get(this.url, {params: queryParams})
-        .take(1)
-        .toPromise()
-        .then((resp) => {
-
-          console.log(resp['data']);
-
-          const result = [];
-          for (const i of resp['data']) {
-            result.push({
-              title: i.title,
-              url: i.images.downsized.url
-            });
-          }
-
-          const searchResult = [];
-          for (let i of resp['data']){
-
-            let newGif : GIFresult = {
-              title: i.title,
-            downsized: i.url
-
-            }
-            searchResult.push(newGif);
+  // counter(i: number) {
+  //   let numArray: number[] = new Array(i);
+  //   let start:number = 1;
+  //
+  //   while ( start != i){
+  //     numArray.push(start);
+  //     start ++;
+  //   }
+  //
+  //
+  // }
 
 
-          }
-          // this.DataReturned.next(searchResult);
-
-          console.log(searchResult);
-        })
-
-        .catch(error => {
-
-          console.log(error);
-        })
-
-    );
-
-
-  }
-
-  // GET method that returns observable
-
-  searchGIF() {
-
-
-    console.log('button is pressed. string is: ', this.submitForm.value.search);
-
-    const queryParams: HttpParams = new HttpParams().set('q', this.submitForm.value.search).set('limit', this.submitForm.value.limit);
-
-    // console.log(queryParams.toString());
-
-    this.http.get(this.url, {params: queryParams}).subscribe(
-      (resp) => {
-
-
-        console.log(resp['data']);
-
-        const result = [];
-        for (const i of resp['data']) {
-          result.push({
-            title: i.title,
-            url: i.images.downsized.url
-          });
-        }
-
-        console.log(result);
-
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-
-    this.submitForm.reset();
-
-
-  }
 
 }

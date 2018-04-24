@@ -47,13 +47,13 @@ export class SaveGIFService {
       params
     };
 
-    let url = '/Service/saveGif?title=' + title + '&gifUrl=' + gifUrl + '&username=' + username;
+    let url = 'http://localhost:8080/saveGif?title=' + title + '&gifUrl=' + gifUrl + '&username=' + username;
 
+// http://localhost:8080/saveGif?title=cat%20dragging%20GIF&gifUrl=https://media3.giphy.com/media/E0cyxhawhe9dm/giphy-downsized.gif&username=alex
 
+    return this.httpClient
+      .get(url);
 
-    this.httpClient
-      .get(url)
-      .subscribe((response: any) => console.log(response));
 
 
   }

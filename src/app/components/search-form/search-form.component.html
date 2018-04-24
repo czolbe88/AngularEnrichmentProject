@@ -1,27 +1,47 @@
-<h1>Search for Gif</h1>
+<div class="container">
+<h1 style="text-align: center">Search for Gif</h1>
+
 
   <form #submitForm="ngForm" (ngSubmit)="searchGIFPService()">
-    <label for="search">Search</label>
 
-    <input type="text" name="search" id="search" ngModel/>
+<div class="row justify-content-center myrow">
+
+  <!--<div class="col-md-1 mycol" >-->
+    <!--<label for="search">Search</label>-->
+
+  <!--</div>-->
+
+  <div class="col-md-5 mycol" >
+
+    <input class="form-control" style="align-items: center" type="text" name="search" id="search" ngModel/>
+  </div>
+
+</div>
 
     <!--<input type="range" min="1" max="100" value="50" id="limit" name="limit" required ngModel>-->
 
-    <button type="submit">Submit</button>
+    <div class="row justify-content-center myrow" style="margin-top: 10px">
 
-    <button type="reset">Clear</button>
+
+      <div class="col-md-3 mycol " style="text-align: center">
+        <button class="btn btn-secondary" type="reset">Clear</button>
+
+      </div>
+
+        <div class="col-md-3 mycol" style="text-align: center">
+          <button class="btn btn-primary" type="submit">Submit</button>
+
+
+        </div>
+    </div>
 
   </form>
 
-<mat-paginator [length]="totalItems"
-               [pageSize]="limit"
-               [pageSizeOptions]="[5, 10, 25]"
+<!--  <a *ngFor="let page of Array(totalPages).keys(); let i=index" href="#" > {{i}} </a>-->
 
-               (page)="pageEvent($event)"
-
-
->
-</mat-paginator>
 
 
 <app-display></app-display>
+
+
+</div>

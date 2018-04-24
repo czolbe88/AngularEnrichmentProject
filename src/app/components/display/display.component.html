@@ -1,26 +1,36 @@
+<div style="margin-top: 20px" class="container" style="margin-top: 20px;">
+
+  <!--<div>-->
+    <!---->
+    <!--<a *ngFor="let page of "-->
+    <!---->
+    <!---->
+  <!--</div>-->
+
+
 <form #saveForm="ngForm" (ngSubmit)="saveGif()">
 
+  <div  class="row justify-content-center">
   <table>
+
     <tr *ngFor="let gif of displayResults" ngModelGroup={{displayResults.indexOf(gif)}}>
 
 
       <td>
-        <p name="gifTitle" ngModel="{{gif.title}}">{{gif.title}}</p>
+        <p class="form-control" name="gifTitle" ngModel="{{gif.title}}">{{gif.title}}</p>
       </td>
+
 
       <td>
-        <img src={{gif.downsized}} width="200" name="gifUrl" ngModel="{{gif.downsized}}"/>
+
+        <img src={{gif.downsized}} width="200" name="gifUrl" ngModel (click)="selected($event)"  />
+
+
       </td>
 
-      <td>
-        <input type="checkbox" name="cb" value="{{gif.title}}" ngModel/>
-      </td>
 
       <!--<td>-->
-      <!--<input type="text"  name ="gifUrl"  value= {{gif.downsized}}   hidden ngModel />-->
-      <!--</td>-->
-      <!--<td>-->
-      <!--<input type="text"  name = "gifTitle"  value= {{gif.title}} hidden  ngModel />-->
+        <!--<input type="checkbox" name="cb" value="{{gif.title}}" ngModel />-->
       <!--</td>-->
 
 
@@ -28,16 +38,31 @@
 
 
 
+
+
   </table>
-
-
-
-
-
-  <div [hidden]="hideDisplayResults">
-    <input type="text" name="user" id="user" placeholder="key in username" required ngModel/>
-    <button type="submit" [disabled]="saveForm.invalid">Save</button>
   </div>
 
 
+
+
+
+
+
+  <div class="row justify-content-center" style="margin-top: 20px;" *ngIf = "savedGiphy.length != 0 ">
+
+    <div>
+
+      <input type="text" name="user" id="user" placeholder="key in username" required ngModel/>
+      <button class="btn btn-primary" type="submit">Save</button>
+
+      <!--add validation-->
+
+    </div>
+
+  </div>
+
 </form>
+
+
+</div>

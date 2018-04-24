@@ -14,7 +14,7 @@ export class RetrieveGIFService {
 
     this.searchResult.length =0;
 
-    let url:string = '/Service/getGif?User=' +  username;
+    let url:string = 'http://localhost:8080/getGif?User=' +  username;
 
     // Returns an observable
     return this.http.get(url)
@@ -27,8 +27,9 @@ export class RetrieveGIFService {
           for (let i in resp) {
 
             let newGif: GIFresult = {
-              title: resp[i]['Title'],
-              downsized: resp[i]['Url']
+              title: resp[i]['title'],
+              downsized: resp[i]['url'],
+              gifAdded: false
 
             };
             this.searchResult.push(newGif);

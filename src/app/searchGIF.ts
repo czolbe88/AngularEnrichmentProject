@@ -41,7 +41,8 @@ export class SearchGIFService {
 
             let newGif: GIFresult = {
               title: i.title,
-              downsized: i.images.downsized.url
+              downsized: i.images.downsized.url,
+              gifAdded: false
 
             };
             this.searchResult.push(newGif);

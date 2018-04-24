@@ -39,7 +39,7 @@ export class RetrievalFormComponent implements OnInit {
     console.log('callback method');
     this.retrieveService.getSearchResults(this.retrieveForm.value.search);
     console.log('DONE?');
-    this.router.navigate(['/search']);
+    // this.router.navigate(['/search']);
 
 
 
